@@ -46,3 +46,49 @@ variable "django_secret_key" {
   type      = string
   sensitive = true
 }
+
+variable "voting_db_user" {
+  type      = string
+  default = "admin"
+}
+
+variable "voting_db_name" {
+  type      = string
+  default = "voting_db"
+}
+
+variable "voting_db_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "database_url" {
+  type      = string
+  sensitive = true
+}
+
+variable "voting_database_url" {
+  type      = string
+  sensitive = true
+}
+
+variable "pgadmin_email" {
+  type      = string
+  sensitive = true
+}
+
+variable "pgadmin_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "public_key_path" {
+  type      = string
+  default = "public.pem"
+}
+
+variable "auth_service_url" {
+  type      = string
+  sensitive = true
+}
+
