@@ -22,12 +22,62 @@ resource "aws_iam_access_key" "map_service" {
   user = aws_iam_user.map_service.name
 }
 
-output "map_service_access_key" {
-  value     = aws_iam_access_key.map_service.id
-  sensitive = true
+resource "aws_iam_role" "github_service" {
+  name = "github-service"
+  assume_role_policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Principal" : {
+            "Federated" : "arn:aws:iam::${var.aws_account_id}:oidc-provider/token.actions.githubusercontent.com"
+          },
+          "Action" : "sts:AssumeRoleWithWebIdentity",
+          "Condition" : {
+            "StringLike" : {
+              "token.actions.githubusercontent.com:aud" : "sts.amazonaws.com",
+              "token.actions.githubusercontent.com:sub" : "repo:${var.github_org}/*"
+            }
+          }
+        }
+      ]
+    }
+  )
 }
 
-output "map_service_secret_key" {
-  value     = aws_iam_access_key.map_service.secret
-  sensitive = true
+resource "aws_iam_policy" "github_service" {
+  name        = "github-service-policy"
+  description = "Policy for GitHub AWS OIDC"
+
+  policy = jsonencode({
+    "Version" : "2012-10-17"
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "ecr:CompleteLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:InitiateLayerUpload",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:PutImage",
+          "ecr:BatchGetImage"
+        ],
+        "Resource" : [for v in aws_ecr_repository.services : v.arn]
+      },
+      {
+        "Action" : [
+          "ecr:GetAuthorizationToken"
+        ],
+        "Effect" : "Allow",
+        "Resource" : "*"
+      }
+    ],
+  })
+}
+
+resource "aws_iam_policy_attachment" "github_service" {
+  name       = "github-service-attachment"
+  roles      = [aws_iam_role.github_service.name]
+  policy_arn = aws_iam_policy.github_service.arn
 }

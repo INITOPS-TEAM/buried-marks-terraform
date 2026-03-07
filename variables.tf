@@ -48,12 +48,12 @@ variable "django_secret_key" {
 }
 
 variable "voting_db_user" {
-  type      = string
+  type    = string
   default = "admin"
 }
 
 variable "voting_db_name" {
-  type      = string
+  type    = string
   default = "voting_db"
 }
 
@@ -83,7 +83,7 @@ variable "pgadmin_password" {
 }
 
 variable "public_key_path" {
-  type      = string
+  type    = string
   default = "public.pem"
 }
 
@@ -92,3 +92,10 @@ variable "auth_service_url" {
   sensitive = true
 }
 
+variable "aws_account_id" {
+  type = string
+}
+
+variable "github_org" {
+  type = string
+}

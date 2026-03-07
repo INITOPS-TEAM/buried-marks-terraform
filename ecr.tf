@@ -2,16 +2,16 @@ locals {
   ecr_repositories = [
     "login-front",
     "map-front",
-    "map-service",
-    "auth-service",
-    "voting-service",
-    "mail-service"
+    "map-microservice",
+    "authentication-microservice",
+    "voting-microservice",
+    "mail-microservice"
   ]
 }
 
 resource "aws_ecr_repository" "services" {
   for_each = toset(local.ecr_repositories)
-  name     = "buried-marks/${each.key}"
+  name     = "buried-marks-${each.key}"
 }
 
 resource "aws_ecr_lifecycle_policy" "services" {
