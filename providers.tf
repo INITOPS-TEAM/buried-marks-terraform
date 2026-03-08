@@ -5,6 +5,7 @@ terraform {
     bucket = "buried-marks-terraform-state"
     key    = "terraform.tfstate"
     region = "eu-north-1"
+    use_lockfile = true
   }
 
   required_providers {
