@@ -10,6 +10,14 @@ resource "aws_secretsmanager_secret" "voting_service" {
   name = "buried-marks/voting-service"
 }
 
+resource "aws_secretsmanager_secret" "mail_service" {
+  name = "buried-marks/mail-service"
+}
+
+resource "aws_secretsmanager_secret" "front_service" {
+  name = "buried-marks/front-service"
+}
+
 resource "aws_secretsmanager_secret_version" "map_service" {
   secret_id = aws_secretsmanager_secret.map_service.id
   secret_string = jsonencode({
