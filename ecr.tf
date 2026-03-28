@@ -1,11 +1,29 @@
 locals {
   ecr_repositories = [
+<<<<<<< Updated upstream
     "login-front",
     "map-front",
     "map-microservice",
+=======
+    "admin-front",
+>>>>>>> Stashed changes
     "authentication-microservice",
+    "login-front",
+    "mail-microservice",
+    "map-front",
+    "map-microservice",
+    "voting-front",
     "voting-microservice",
-    "mail-microservice"
+    # ECR repositories for Helm charts
+    "helm-admin-front",
+    "helm-authentication-microservice",
+    "helm-gateway",
+    "helm-login-front",
+    "helm-mail-microservice",
+    "helm-map-front",
+    "helm-map-microservice",
+    "helm-voting-front",
+    "helm-voting-microservice",
   ]
 }
 

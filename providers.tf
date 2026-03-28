@@ -2,9 +2,9 @@ terraform {
   required_version = "~> 1.14.0"
 
   backend "s3" {
-    bucket = "buried-marks-terraform-state"
-    key    = "terraform.tfstate"
-    region = "eu-north-1"
+    bucket       = ""
+    key          = ""
+    region       = ""
     use_lockfile = true
   }
 
