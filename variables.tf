@@ -13,8 +13,11 @@ variable "aws_secret_key" {
 }
 
 variable "bucket_name" {
-  type    = string
-  default = "buried-marks-media"
+  type = string
+}
+
+variable "terraform_state_bucket_name" {
+  type = string
 }
 
 variable "mariadb_password" {

@@ -1,13 +1,25 @@
 locals {
   ecr_repositories = [
+    "admin-front",
+    "authentication-microservice",
     "login-front",
+    "mail-microservice",
     "map-front",
     "voting-front",
     "admin-front",
     "map-microservice",
-    "authentication-microservice",
+    "voting-front",
     "voting-microservice",
-    "mail-microservice"
+    # ECR repositories for Helm charts
+    "helm-admin-front",
+    "helm-authentication-microservice",
+    "helm-gateway",
+    "helm-login-front",
+    "helm-mail-microservice",
+    "helm-map-front",
+    "helm-map-microservice",
+    "helm-voting-front",
+    "helm-voting-microservice",
   ]
 }
 
