@@ -1,12 +1,9 @@
 locals {
   ecr_repositories = [
-<<<<<<< Updated upstream
+    "admin-front",
     "login-front",
     "map-front",
     "map-microservice",
-=======
-    "admin-front",
->>>>>>> Stashed changes
     "authentication-microservice",
     "login-front",
     "mail-microservice",
