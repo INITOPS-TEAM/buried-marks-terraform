@@ -1,9 +1,6 @@
 locals {
   ecr_repositories = [
     "admin-front",
-    "login-front",
-    "map-front",
-    "map-microservice",
     "authentication-microservice",
     "login-front",
     "mail-microservice",
