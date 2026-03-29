@@ -102,3 +102,19 @@ variable "aws_account_id" {
 variable "github_org" {
   type = string
 }
+
+variable "mariadb_database" {
+  type = string
+}
+
+variable "mariadb_user" {
+  type = string
+}
+
+variable "auth_db_name" {
+  type = string
+}
+
+variable "auth_db_user" {
+  type = string
+}

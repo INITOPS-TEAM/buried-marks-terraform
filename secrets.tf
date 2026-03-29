@@ -10,6 +10,14 @@ resource "aws_secretsmanager_secret" "voting_service" {
   name = "buried-marks/voting-service"
 }
 
+resource "aws_secretsmanager_secret" "mail_service" {
+  name = "buried-marks/mail-service"
+}
+
+resource "aws_secretsmanager_secret" "front_service" {
+  name = "buried-marks/front-service"
+}
+
 resource "aws_secretsmanager_secret_version" "map_service" {
   secret_id = aws_secretsmanager_secret.map_service.id
   secret_string = jsonencode({
@@ -17,6 +25,8 @@ resource "aws_secretsmanager_secret_version" "map_service" {
     AWS_SECRET_ACCESS_KEY = aws_iam_access_key.map_service.secret
     MARIADB_PASSWORD      = var.mariadb_password
     SECRET_KEY            = var.secret_key
+    MARIADB_DATABASE      = var.mariadb_database
+    MARIADB_USER          = var.mariadb_user
     JWT_PRIVATE_KEY       = file(var.jwt_private_key_path)
     JWT_PUBLIC_KEY        = file(var.jwt_public_key_path)
   })
@@ -27,6 +37,8 @@ resource "aws_secretsmanager_secret_version" "auth_service" {
   secret_string = jsonencode({
     DB_PASSWORD       = var.db_password
     DJANGO_SECRET_KEY = var.django_secret_key
+    DB_NAME           = var.auth_db_name
+    DB_USER           = var.auth_db_user
   })
 }
 
