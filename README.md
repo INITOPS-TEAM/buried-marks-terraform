@@ -13,63 +13,64 @@ AWS infrastructure configuration for BuriedMarks project.
 
 - Terraform installed.
 - AWS credentials with required permissions.
+- Create `.env.<serviceName>.json` files from `.env.<serviceName>.json.example` stored in `secrets` directory.
 
 ## Multi Environment Setup
 
 1. Export AWS credentials:
 
-```bash
-export AWS_ACCESS_KEY_ID="your_key"
-export AWS_SECRET_ACCESS_KEY="your_secret"
-```
+   ```bash
+   export AWS_ACCESS_KEY_ID="your_key"
+   export AWS_SECRET_ACCESS_KEY="your_secret"
+   ```
 
- 1. Creating a bucket
+2. Creating a bucket
 
-Comment out the backend block "s3" in the main.tf file.
+   Comment out the backend block "s3" in the providers.tf file.
 
-```bash
- # backend "s3" {
-  #   bucket       = "your-bucket-name"
-  #   key          = "state-path"
-  #   region       = "your-region"
-  #   encrypt      = true
-  #   use_lockfile = true
-  # }
-```
+   ```bash
+   # backend "s3" {
+     #   bucket       = "your-bucket-name"
+     #   key          = "state-path"
+     #   region       = "your-region"
+     #   encrypt      = true
+     #   use_lockfile = true
+     # }
+   ```
 
- 1. Local initialization:
+3. Local initialization:
 
-The command will create a bucket in AWS and a local state file on your computer.
+   The command will create a bucket in AWS and a local state file on your computer.
 
-```bash
-terraform init
-```
+     ```bash
+     just terraform-init
+     ```
 
-```bash
-terraform apply
-```
+     ```bash
+     just terraform-apply
+     ```
 
- 1. State migration
+4. State migration
 
-Uncomment the backend "s3" block
+   Uncomment the backend "s3" block
 
-```bash
-backend "s3" {
-  bucket       = "your-bucket-nam"
-  key          = "state-path"
-  region       = "your-region"
-  encrypt      = true
-  use_lockfile = true
-}
-```
+   ```bash
+   backend "s3" {
+     bucket       = "your-bucket-nam"
+     key          = "state-path"
+     region       = "your-region"
+     encrypt      = true
+     use_lockfile = true
+   }
+   ```
 
-Execute the command:
+   Execute the command:
 
-```bash
-terraform init
-```
+   ```bash
+   just terraform-init
+   ```
 
-Confirm copying the state
+   Confirm copying the state
 
 ## Justfile
 
@@ -86,30 +87,6 @@ Use following commands to operate with terraform:
 - `just terraform-init`
 - `just terraform-apply`
 - `just terraform-plan`
-
-### Credentials
-
-Store AWS credentials in following files for use of provided Justfile.
-
-```bash
-~/Documents/AWS_CREDS_DEV.txt
-~/Documents/AWS_CREDS_STAGE.txt
-~/Documents/AWS_CREDS_PROD.txt
-```
-
-Example of `AWS_CREDS_*.txt` is represented below:
-
-```bash
-export AWS_ACCESS_KEY_ID='somevalue'
-export AWS_SECRET_ACCESS_KEY='somevalue'
-```
-
-## Get map-service credentials
-
-```bash
-terraform output -raw map_service_access_key
-terraform output -raw map_service_secret_key
-```
 
 ## Variables
 

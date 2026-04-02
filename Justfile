@@ -1,9 +1,4 @@
-aws-auth:
-    if [ ${ENV} == "dev" ]; then source ~/Documents/AWS_CREDS_DEV.txt; \
-    elif [ ${ENV} == "stage" ]; then source ~/Documents/AWS_CREDS_STAGE.txt; \
-    elif [ ${ENV} == "prod" ]; then source ~/Documents/AWS_CREDS_PROD.txt; fi
-
-terraform-init: aws-auth
+terraform-init:
     terraform init \
         -backend-config="./environments/backends/${ENV}.config"
 

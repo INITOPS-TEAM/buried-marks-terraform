@@ -6,3 +6,7 @@ terraform.tfvars
 
 ec_private.key
 ec_public.key
+
+.env.*.json
+!.env.*.json.example
+*.jpeg

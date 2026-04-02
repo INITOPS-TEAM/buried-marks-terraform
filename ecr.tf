@@ -16,6 +16,7 @@ locals {
     "helm-mail-microservice",
     "helm-map-front",
     "helm-map-microservice",
+    "helm-monitoring",
     "helm-voting-front",
     "helm-voting-microservice",
   ]
