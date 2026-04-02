@@ -1,9 +1,0 @@
-aws_access_key = ""
-aws_secret_key = ""
-
-mariadb_password = ""
-
-secret_key = ""
-
-django_secret_key = ""
-db_password = ""

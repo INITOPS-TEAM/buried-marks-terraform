@@ -1,8 +1,12 @@
 terraform.tfvars
 
 *.tfstate
-*.tfstate.backup
+*.tfstate.backup*
 .terraform/
 
 ec_private.key
 ec_public.key
+
+.env.*.json
+!.env.*.json.example
+*.jpeg

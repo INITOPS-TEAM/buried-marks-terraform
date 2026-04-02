@@ -2,15 +2,13 @@ resource "aws_s3_bucket" "buried_marks" {
   bucket = var.bucket_name
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "buried-marks-terraform-state"
-}
+resource "aws_s3_bucket_public_access_block" "buried_marks" {
+  bucket = aws_s3_bucket.buried_marks.id
 
-resource "aws_s3_bucket_versioning" "terraform_state" {
-  bucket = aws_s3_bucket.terraform_state.id
-  versioning_configuration {
-    status = "Enabled"
-  }
+  block_public_acls       = true
+  block_public_policy     = false
+  ignore_public_acls      = true
+  restrict_public_buckets = false
 }
 
 resource "aws_s3_bucket_policy" "buried_marks" {
@@ -37,6 +35,23 @@ resource "aws_s3_bucket_cors_configuration" "buried_marks" {
     allowed_methods = ["GET", "PUT", "POST", "DELETE"]
     allowed_origins = ["http://localhost"]
     expose_headers  = []
+  }
+}
+
+resource "aws_s3_object" "buried_marks" {
+  bucket = aws_s3_bucket.buried_marks.id
+  key    = "markers/Motherland_Small.jpeg"
+  source = "secrets/Motherland_Small.jpeg"
+}
+
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = var.terraform_state_bucket_name
+}
+
+resource "aws_s3_bucket_versioning" "terraform_state" {
+  bucket = aws_s3_bucket.terraform_state.id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
 
