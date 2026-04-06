@@ -1,4 +1,5 @@
 terraform-init:
+    rm -r .terraform || true
     terraform init \
         -backend-config="./environments/backends/${ENV}.config"
 
