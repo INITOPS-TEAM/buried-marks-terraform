@@ -22,6 +22,14 @@ resource "aws_iam_access_key" "map_service" {
   user = aws_iam_user.map_service.name
 }
 
+resource "aws_iam_openid_connect_provider" "github_service" {
+  url = "https://token.actions.githubusercontent.com"
+
+  client_id_list = [
+    "sts.amazonaws.com",
+  ]
+}
+
 resource "aws_iam_role" "github_service" {
   name = "github-service"
   assume_role_policy = jsonencode(

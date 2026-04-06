@@ -5,8 +5,6 @@ locals {
     "login-front",
     "mail-microservice",
     "map-front",
-    "voting-front",
-    "admin-front",
     "map-microservice",
     "voting-front",
     "voting-microservice",
@@ -18,6 +16,7 @@ locals {
     "helm-mail-microservice",
     "helm-map-front",
     "helm-map-microservice",
+    "helm-monitoring",
     "helm-voting-front",
     "helm-voting-microservice",
   ]

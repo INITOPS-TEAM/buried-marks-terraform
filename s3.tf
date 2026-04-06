@@ -38,6 +38,12 @@ resource "aws_s3_bucket_cors_configuration" "buried_marks" {
   }
 }
 
+resource "aws_s3_object" "buried_marks" {
+  bucket = aws_s3_bucket.buried_marks.id
+  key    = "markers/Motherland_Small.jpeg"
+  source = "secrets/Motherland_Small.jpeg"
+}
+
 resource "aws_s3_bucket" "terraform_state" {
   bucket = var.terraform_state_bucket_name
 }
