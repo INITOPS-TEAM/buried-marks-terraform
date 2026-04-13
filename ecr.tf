@@ -19,6 +19,7 @@ locals {
     "helm-monitoring",
     "helm-voting-front",
     "helm-voting-microservice",
+    "helm-consul",
   ]
 }
 
