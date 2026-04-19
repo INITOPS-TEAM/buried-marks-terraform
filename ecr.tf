@@ -6,6 +6,7 @@ locals {
     "mail-microservice",
     "map-front",
     "map-microservice",
+    "mcp-microservice",
     "voting-front",
     "voting-microservice",
     # ECR repositories for Helm charts
@@ -16,6 +17,7 @@ locals {
     "helm-mail-microservice",
     "helm-map-front",
     "helm-map-microservice",
+    "helm-mcp-microservice",
     "helm-monitoring",
     "helm-voting-front",
     "helm-voting-microservice",
